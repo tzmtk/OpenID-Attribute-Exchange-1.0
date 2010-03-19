@@ -400,7 +400,7 @@ openid.ns.<extension_alias>=http://openid.net/srv/ax/1.0
         namespace "&axns;" SHOULD be listed as an &lt;xrd:Type&gt;
         child element of the &lt;xrd:Service&gt; element in the XRDS
         discovery document.
-        ->
+        -->
       </t>
     </section>
     <section anchor="fetch" title="Fetch Message">
@@ -424,93 +424,116 @@ openid.ns.<extension_alias>=http://openid.net/srv/ax/1.0
           -->
         </t>
         <t>
+          <!--
           Multiple attribute aliases in the "openid.ax.required" and
           "openid.ax.if_available" directives are separated with a
           comma, ",".
+          -->
         </t>
         <t>
           <list style="hanging">
             <t hangText="openid.ax.mode">
               <list style="empty">
                 <t>
+                  <!--
                   REQUIRED. Value: "fetch_request".
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.type.&lt;alias&gt;">
               <list style="empty">
                 <t>
+                  <!--
                   The value of this parameter specifies the type identifier
                   URI of a requested attribute. The &lt;alias&gt; will
                   further be used to identify the attribute being exchanged.
+                  -->
                 </t>
                 <t>
+                  <!--
                   Attribute aliases MUST NOT contain newline and colon characters,
                   as specified in the Data Formats / Protocol Messages section of
                   <xref target="OpenID.authentication-2.0"/>; they also MUST
                   NOT contain commas (",") and periods (".").
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.required">
               <list style="empty">
                 <t>
+                  <!--
                   Value: an attribute alias, or a list of aliases
                   corresponding to the URIs defined by
                   "openid.ax.type.&lt;alias&gt;" parameters. Multiple
                   attribute aliases are separated with a comma, ",".
+                  -->
                 </t>
                 <t>
+                  <!--
                   By requesting attributes using this field, a hint is sent
                   to the OP about the RP's requirements for offering certain
                   functionality and should be used by the OP to help the
                   user decide what attributes to release. RP's requirements
                   should not be enforced by the OP.
+                  -->
                 </t>
                 <t>
+                  <!--
                   The RP should offer, out of band of attribute exchange,
                   an alternate method of collecting the attributes it needs,
                   if they weren't obtained via attribute exchange.
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.if_available">
               <list style="empty">
                 <t>
+                  <!--
                   Value: an attribute alias, or a list of aliases
                   corresponding to the URIs defined by
                   "openid.ax.type.&lt;alias&gt;" parameters. Multiple
                   attribute aliases are separated with a comma, ",".
+                  -->
                 </t>
                 <t>
+                  <!--
                   Attributes requested using this field are deemed
                   optional by the RP; the RP should be able to complete
                   the interaction with the user even if values are not
                   provided by the OP for the optional attributes.
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.count.&lt;alias&gt;">
               <list style="empty">
                 <t>
+                  <!--
                   The number of values for the specified attribute
                   alias the Relying Party wishes to receive from the OpenID
                   Provider. If present, the value MUST be greater than zero,
                   or the special value "unlimited" which signifies that the
                   RP is requesting as many values as the OP has for the
                   attribute. If absent, exactly one value is requested.
+                  -->
                 </t>
                 <t>
+                  <!--
                   OpenID Providers MAY return less than or the exact
                   number of values speficied by this field for the
                   associated attribute, but MUST NOT return more than
                   the number of requested values for the attribute.
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.update_url">
               <list style="empty">
                 <t>
+                  <!--
                   If present, the OpenID Provider may re-post the fetch
                   response message to the specified URL at some time
                   after the initial response has been sent, using a
@@ -519,41 +542,52 @@ openid.ns.<extension_alias>=http://openid.net/srv/ax/1.0
                   the parameter as part of the fetch response message.
                   If it does not support this feature it may legally
                   ignore this parameter.
+                  -->
                 </t>
                 <t>
+                  <!--
                   The value of the "openid.ax.update_url" field MUST
                   be used as value for "openid.return_to" field of the
                   underlying OpenID Authentication Positive Assertion
                   of the fetch response update.
+                  -->
                 </t>
                 <t>
+                  <!--
                   The "openid.ax.update_url" value MUST also match the
                   realm specified in the underlying OpenID message of the
                   fetch request, if a "openid.realm" field is present.
                   The matching rules are the ones specified in the
                   "Realms" section of the OpenID Authentication protocol.
+                  -->
                 </t>
                 <t>
+                  <!--
                   This "unsolicited" response message would be
                   generated in response to an attribute information
                   update, and would contain the updated data. The OP
                   should obtain the user's consent for resending the
                   updated data to the RPs, as with any OpenID Positive
                   Assertion.
+                  -->
                 </t>
                 <t>
+                  <!--
                   The relying party may include transaction data encoded
                   in the URL such that it contains enough information to
                   match the attribute information to the identity subject.
                   Additional information may be encoded in the URL by the
                   relying party as necessary.
+                  -->
                 </t>
                 <t>
+                  <!--
                   If an RP wishes to receive no further updates for an
                   attribute, it MAY return the HTTP 404 response code to
                   the corresponding "update_url". OPs MAY decide to
                   stop sending updates after encountering 404 response
                   codes.
+                  -->
                 </t>
               </list>
             </t>
@@ -561,10 +595,12 @@ openid.ns.<extension_alias>=http://openid.net/srv/ax/1.0
         </t>
         <figure>
           <preamble>
+            <!--
             This example requests the required full name and gender
             information, and the optional favourite dog and movie
             information. The Relying Party is interested in up to three
             favorite movies associated with the subject identifier.
+            -->
           </preamble>
           <artwork>
             <![CDATA[
@@ -586,6 +622,7 @@ openid.ax.update_url=http://idconsumer.com/update?transaction_id=a6b5c41
         <!-- Note: do we need a failure response format as in the
              store response? -->
         <t>
+          <!--
           The fetch response message supplies the information
           requested in the fetch request.  Each attribute is supplied
           with the assigned alias prefixed by "openid.ax.value." as the
@@ -593,14 +630,18 @@ openid.ax.update_url=http://idconsumer.com/update?transaction_id=a6b5c41
           types are also returned in the "openid.ax.type.&lt;alias&gt;"
           parameters. The supported length for attribute aliases MUST
           be at least 32 characters.
+          -->
         </t>
         <t>
+          <!--
           With the exception of "openid.ax.mode", all of the following
           request fields are OPTIONAL, though any attribute value
           present in a "openid.ax.value.&lt;alias&gt;" parameter MUST
           have an associated "openid.ax.type.&lt;alias&gt;" parameter.
+          -->
         </t>
         <t>
+          <!--
           If a value was not supplied or available from the user,
           the associated "openid.ax.value.&lt;alias&gt;" field
           SHOULD NOT be included by the OP in the fetch response.
@@ -608,62 +649,78 @@ openid.ax.update_url=http://idconsumer.com/update?transaction_id=a6b5c41
           together with its corresponding "openid.ax.type.&lt;alias&gt;"
           field MAY be included to explicitly state that no values
           are provided for an attribute.
+          -->
         </t>
         <t>
+          <!--
           Validation of the received data should be performed out of band
           of attribute exchange by the RP.
+          -->
         </t>
         <t>
           <list style="hanging">
             <t hangText="openid.ax.mode">
               <list style="empty">
                 <t>
+                  <!--
                   REQUIRED. Value: "fetch_response".
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.type.&lt;alias&gt;">
               <list style="empty">
                 <t>
+                  <!--
                   The value of this parameter specifies the type identifier
                   URI for an attribute in the fetch response.
                   The &lt;alias&gt; will further be used to identify
                   the attribute being exchanged.
+                  -->
                 </t>
                 <t>
+                  <!--
                   Attribute aliases MUST NOT contain newline and colon characters,
                   as specified in the Data Formats / Protocol Messages section of
                   <xref target="OpenID.authentication-2.0"/>; they also MUST
                   NOT contain commas (",") and periods (".").
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.count.&lt;alias&gt;">
               <list style="empty">
                 <t>
+                  <!--
                   The number of values returned for the attribute referred
                   to as &lt;alias&gt;.
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.value.&lt;alias&gt;">
               <list style="empty">
                 <t>
+                  <!--
                   Assigns a value to the attribute referred to as
                   &lt;alias&gt;. This parameter format MUST be used if
                   "openid.ax.count.&lt;alias&gt;" is not sent.
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.value.&lt;alias&gt;.&lt;number&gt;">
               <list style="empty">
                 <t>
+                  <!--
                   Assigns a value to the attribute referred to as
                   &lt;alias&gt;. This parameter format MUST be used
                   if "openid.ax.count.&lt;alias&gt;" is sent and at least
                   one value is provided for the associated attribute.
+                  -->
                 </t>
                 <t>
+                  <!--
                   The &lt;number&gt; uniquely identifies the index of
                   the value, ranging from one to the value specified by
                   "openid.ax.count.&lt;alias&gt;". The number of
@@ -671,35 +728,42 @@ openid.ax.update_url=http://idconsumer.com/update?transaction_id=a6b5c41
                   "openid.ax.count.&lt;alias&gt;". The OP is not
                   required to preserve the order of attribute values
                   among fetch responses.
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.update_url">
               <list style="empty">
                 <t>
+                  <!--
                   Returns the "update_url" parameter specified in the
                   request. If the OpenID Provider receives an
                   "update_url" parameter and it intends to support the
                   attribute update feature, it MUST present the
                   "update_url" parameter and value as part of the fetch
                   response message.
+                  -->
                 </t>
               </list>
             </t>
           </list>
         </t>
         <t>
+          <!--
           A fetch response message may also be sent to the
           "update_url" specified in <xref
           target="fetch_request"/> in response to attribute value
           updates on the OpenID Provider.
+          -->
         </t>
         <figure>
           <preamble>
+            <!--
             The response to the previous request example, in which the
             required full name information, and the optional favourite
             dog information are supplied. Even though three movie names
             were requested, the OP supplied only two values.
+            -->
           </preamble>
           <artwork>
             <![CDATA[
@@ -723,71 +787,88 @@ openid.ax.update_url=http://idconsumer.com/update?transaction_id=a6b5c41
     </section>
     <section anchor="store" title="Store Message">
       <t>
+        <!--
         The store message is used to store personal identity
         information to the OpenID Provider; it provides the means
         for an RP to transfer to the OP attributes that the user
         may consider useful, such as by providing them to other RPs.
         The supported length for attribute aliases MUST be at least
         32 characters.
+        -->
       </t>
       <t>
+        <!--
         The manner in which the OP processes the attribute payload in a
         store request if out of scope of this document.
+        -->
       </t>
       <section anchor="store_request" title="Store Request Format">
         <t>
+          <!--
           With the exception of "openid.ax.mode", all of the following
           request fields are OPTIONAL. Any alias referred to in a
           "openid.ax.value.&lt;alias&gt;" or
           "openid.ax.value.&lt;alias&gt;.&lt;number&gt;" parameter MUST
           have an associated "openid.ax.type.&lt;alias&gt;" parameter.
+          -->
         </t>
         <t>
           <list style="hanging">
             <t hangText="openid.ax.mode">
               <list style="empty">
                 <t>
+                  <!--
                   REQUIRED. Value: "store_request".
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.type.&lt;alias&gt;">
               <list style="empty">
                 <t>
+                  <!--
                   The value of this parameter specifies the type identifier
                   URI for an attribute in the sore request.
                   The &lt;alias&gt; will further be used to identify
                   the attribute being exchanged.
+                  -->
                 </t>
                 <t>
+                  <!--
                   Attribute aliases MUST NOT contain newline and colon characters,
                   as specified in the Data Formats / Protocol Messages section of
                   <xref target="OpenID.authentication-2.0"/>; they also MUST
                   NOT contain commas (",") and periods (".").
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.count.&lt;alias&gt;">
               <list style="empty">
                 <t>
+                  <!--
                   The number of values sent for the attribute referred to
                   as &lt;alias&gt;. If present, it MUST be greater than
                   zero.
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.value.&lt;alias&gt;">
               <list style="empty">
                 <t>
+                  <!--
                   Assigns a value to the attribute referred to as
                   &lt;alias&gt;. This parameter format MUST be used if
                   "openid.ax.count.&lt;alias&gt;" is not sent.
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.value.&lt;alias&gt;.&lt;number&gt;">
               <list style="empty">
                 <t>
+                  <!--
                   Assigns a value to the attribute referred to as
                   &lt;alias&gt;. The &lt;number&gt; uniquely identifies the
                   index of the value, ranging from one to the value specified
@@ -795,6 +876,7 @@ openid.ax.update_url=http://idconsumer.com/update?transaction_id=a6b5c41
                   MUST be used if "openid.ax.count.&lt;alias&gt;" is sent,
                   and the number of these parameters MUST be equal to the
                   value specified by "openid.ax.count.&lt;alias&gt;".
+                  -->
                 </t>
               </list>
             </t>
@@ -820,8 +902,10 @@ openid.ax.value.fav_movie.2=Movie2
       <section anchor="store_response" title="Store Response Format">
         <section title="Storage Success">
           <t>
+            <!--
             The successful store operation is indicated by the mode
             parameter in the store response:
+            -->
           </t>
           <t>
             <list style="hanging">
@@ -847,24 +931,30 @@ openid.ax.mode=store_response_success
         </section>
         <section title="Storage Failure">
           <t>
+            <!--
             A storage failure response has the following format:
+            -->
           </t>
         <t>
           <list style="hanging">
             <t hangText="openid.ax.mode">
               <list style="empty">
                 <t>
+                  <!--
                   REQUIRED. Value: "store_response_failure".
+                  -->
                 </t>
               </list>
             </t>
             <t hangText="openid.ax.error">
               <list style="empty">
                 <t>
+                  <!--
                   OPTIONAL. Parameter describing the error condition
                   leading to the failure response, intended to be
                   presented to the user. The locale of the message
                   should match the locale of the HTTP message.
+                  -->
                 </t>
               </list>
             </t>
@@ -886,24 +976,32 @@ openid.ax.error=General storage failure
     </section>
     <section title="Security Considerations">
       <t>
+        <!--
         OpenID Attribute Exchange is an OpenID extension, and thus uses
         OpenID Authentication request and response messages for exchanging
         attributes.
+        -->
       </t>
       <t>
+        <!--
         See the "Security Considerations" section of
         <xref target="OpenID.authentication-2.0"/>.
+        -->
       </t>
     </section>
     <section title="Acknowledgements">
       <t>
+        <!--
         John Merrells and other contributors to the document
         'draft-merrells-dix'. Portions of that document were
         re-used for this one.
+        -->
       </t>
       <t>
+        <!--
         Mark Wahl advised on how to deal with issues concerning the
         encoding of attributes.
+        -->
       </t>
     </section>
   </middle>
