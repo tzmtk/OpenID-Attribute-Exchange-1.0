@@ -157,9 +157,11 @@
     <date month="December" year="2007"/>
     <abstract>
       <t>
+        <!--
         OpenID Attribute Exchange is an OpenID service extension for
         exchanging identity information between endpoints. Messages for
         retrieval and storage of identity information are provided.
+        -->
       </t>
     </abstract>
   </front>
@@ -167,50 +169,65 @@
   <middle>
     <section title="Terminology">
       <t>
+        <!--
         The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
         NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
         "OPTIONAL" in this document are to be interpreted as described
         in <xref target="RFC2119"/>.
+        -->
       </t>
       <section title="Definitions and Conventions">
         <t>
           <list style="hanging">
             <t hangText="User:">
+              <!--
               Also referred to as "End User" or "Subject".
               A person with a digital identity who participates in
               OpenID-based identity information exchanges using their
               client software, typically a web browser.
-            </t>
+              -->            
+</t>
             <t hangText="Identity Data:">
+              <!--
               A property of a digital identity in which the Property
               Name and Property Value are represented as a name-value
               pair.
+              -->
             </t>
             <t hangText="Attribute">
+              <!--
               The base of the information model used to describe the
               Identity Data, for the purpose of exchanging it.
+              -->
             </t>
             <t hangText="Persona:">
+              <!--
               A subset of the user's identity data. A user can have
               multiple personas as part of their identity. For example,
               a user might have a work persona and a home persona.
+              -->
             </t>
             <t hangText="OpenID Provider:">
+              <!--
               Also called "OP" or "Server". An OpenID Authentication
               server on which a Relying Party relies for an assertion
               that the end user controls an Identifier.
+              -->
             </t>
             <t hangText="Relying Party:">
-              Also called "RP" or "Consumer". A Web application that
+              <!--              Also called "RP" or "Consumer". A Web application that
               wants proof that the end user controls an Identifier,
               and requests identity data associated with the end user.
+              -->
             </t>
           </list>
         </t>
         <t>
+          <!--
           All OpenID Attribute Exchange messages MUST contain the
           following extension namespace declaration, as specified
           in the Extensions section of OpenID-Authentication-2.0:
+          -->
         </t>
         <figure>
           <artwork>
@@ -220,11 +237,13 @@ openid.ns.<extension_alias>=http://openid.net/srv/ax/1.0
           </artwork>
         </figure>
         <t>
+          <!--
           The actual extension namespace alias should be determined
           on a per-message basis by the party composing the messages,
           in such a manner as to avoid conflicts between multiple
           extensions. For the purposes of this document, the extension
           namespace alias for the attribute exchange service will be "ax".
+          -->
         </t>
       </section>
     </section>
@@ -236,17 +255,22 @@ openid.ns.<extension_alias>=http://openid.net/srv/ax/1.0
       Document=URL=Message?
       -->
       <t>
+        <!--
         The attribute exchange service extension is identified by the
         URI "&axns;". This URI MUST be specified in the extension
         namespace declaration.
+        -->
       </t>
       <t>
+        <!--
         An attribute is a unit of personal identity information that
         is identified by a unique URI. It may refer to any kind of
         information. A reference example of defining attribute types
         is provided by <xref target="OpenID.axschema"/>.
+        -->
       </t>
       <t>
+        <!--
         This service extension defines two message types for
         transferring attributes: fetch (see <xref target="fetch"/>)
         and store (see <xref target="store"/>). Fetch retrieves
@@ -255,14 +279,18 @@ openid.ns.<extension_alias>=http://openid.net/srv/ax/1.0
         Provider. Both messages originate from the Relying Party
         and are passed to the OpenID Provider via the user agent
         as per the OpenID Authentication protocol specification.
+        -->
       </t>
       <t>
+        <!--
         The request parameters detailed here MUST be sent using the
         <xref target="OpenID.authentication-2.0"/> extension mechanism.
+        -->
       </t>
     </section>
     <section title="Information Model">
       <t>
+        <!--
         The OpenID Attribute Exchange service extension provides a
         mechanism for moving identity information between sites, as
         such its information model is simple:
@@ -272,9 +300,11 @@ openid.ns.<extension_alias>=http://openid.net/srv/ax/1.0
           <t>An attribute type identifier is a URI</t>
           <t>An attribute value can be any kind of data.</t>
         </list>
+        -->
       </t>
       <section title="Subject Identifier" anchor="identifier-definition">
         <t>
+          <!--
           An identifier for a set of attributes. It MUST be a URI. The
           subject identifier corresponds to the end-user identifier in
           the authentication portion of the messages.  In other words,
@@ -282,63 +312,80 @@ openid.ns.<extension_alias>=http://openid.net/srv/ax/1.0
           exchange part of the message is the same as the end-user in
           the authentication part.  The subject identifier is not
           included in the attribute exchange.
+          -->
         </t>
       </section>
       <section title="Attribute Type Identifier" anchor="attribute-name-definition">
         <t>
+          <!--
           An attribute type identifier MUST be a URI, which is used
           for referring to property values.
+          -->
         </t>
         <t>
+          <!--
           If an attribute type identifier URI can be resolved then it
           MAY be dereferenced to retrieve a description of the
           property. OpenID Providers can use the metadata obtained
           through dereferencing new or unknown attribute types to
           dynamically assist the user in providing the attribute.
+          -->
         </t>
         <t>
+          <!--
           This provides for flexibility and extensibility. Flexibility
           in that both URNs and URLs can be used to refer to property
           values. Extensibility allows any individual site, or
           consortium of sites, to define their own attribute types
           with agreements on the syntax and semantics of their
           associated attribute values.
+          -->
         </t>
         <t>
+          <!--
           <xref target="OpenID.axschema"/> outlines an example method
           of defining new attribute type URIs, and also provides a set
           of attribute types with their associated metadata schema and
           data formats.  
+          -->
         </t>
 
       </section>
       <section title="Attribute Value" anchor="attribute-value-definition">
         <t>
+          <!--
           A attribute value MUST be a <xref target="RFC3629">UTF-8</xref>
           string. In order to comply with the data formats defined by
           the underlying <xref target="OpenID.authentication-2.0"/>
           protocol, attribute values MUST NOT contain newlines
           (UCS codepoint 10, &quot;\n&quot;).
+          -->
         </t>
         <t>
+          <!--
           OpenID Attribute Exchange can be used to transfer any kind
           of data. If the data contains newlines, is not a UTF-8 string
           or it is so desired by the parties transferring the data,
           the data MUST be encoded to a UTF-8 string without newlines.
+          -->
         </t>
 
         <section title="Attribute-Specific Encodings"
                  anchor="attribute-specific-encodings">
           <t>
+            <!--
             Attribute-specific encodings can be defined using the
             attribute metadata descriptions and may be applied by
             the protocol layer above OpenID Attribute Exchange.
+            -->
           </t>
 
           <t>
+            <!--
             Optionally, attribute-specific encodings may use language
             tags <xref target="OpenID.value-lang-1.0"/> for
             localization.
+            -->
           </t>
         </section>
 
@@ -346,21 +393,26 @@ openid.ns.<extension_alias>=http://openid.net/srv/ax/1.0
     </section>
     <section title="Discovery">
       <t>
+        <!--
         Discovery of the attribute exchange service extension is
         achieved via the mechanism described in <xref
         target="OpenID.authentication-2.0"/>. The attribute exchange
         namespace "&axns;" SHOULD be listed as an &lt;xrd:Type&gt;
         child element of the &lt;xrd:Service&gt; element in the XRDS
         discovery document.
+        ->
       </t>
     </section>
     <section anchor="fetch" title="Fetch Message">
       <t>
+        <!--
         The fetch message is used to retrieve personal identity
         attributes from an OpenID Provider.
+        -->
       </t>
       <section anchor="fetch_request" title="Fetch Request Format">
         <t>
+          <!--
           With the exception of "openid.ax.mode", all of the following
           request fields are OPTIONAL, though at least one of
           "openid.ax.required" or "openid.ax.if_available" MUST be
@@ -369,6 +421,7 @@ openid.ns.<extension_alias>=http://openid.net/srv/ax/1.0
           have an associated "openid.ax.type.&lt;alias&gt;" parameter.
           The supported length for attribute aliases MUST be at least
           32 characters.
+          -->
         </t>
         <t>
           Multiple attribute aliases in the "openid.ax.required" and
